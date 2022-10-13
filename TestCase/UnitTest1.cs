@@ -3,11 +3,10 @@ using MoodAnalyzer;
 
 namespace TestCase
 {
-    
+
     [TestClass]
     public class UnitTest1
     {
-        //UC 1.1
         [TestMethod]
         public void GivenMood_WhenSad_ShouldReturn_SAD_MOOD()
         {
@@ -22,7 +21,7 @@ namespace TestCase
             //Assert
             Assert.AreEqual(expected, actual);
         }
-        //UC 1.2
+
         [TestMethod]
         public void GivenMood_WhenHappy_ShouldReturn_HAPPY_MOOD()
         {
@@ -37,29 +36,14 @@ namespace TestCase
             //Assert
             Assert.AreEqual(expected, actual);
         }
-        //UC 3.1
+
         [TestMethod]
-        public void GivenMood_WhenNull_ShouldReturn_Null_MOOD_EXCEPTION_MESSAGE()
+        public void GivenMood_WhenNull_ShouldReturn_HAPPY_MOOD()
         {
             //Arrange
             string moodMessage = null;
             MoodAnalyzerProblems moodAnalyser = new MoodAnalyzerProblems();
-            string expected = "Null message passed.";
-
-            //Act
-            string actual = moodAnalyser.AnalyseMood(moodMessage);
-
-            //Assert
-            Assert.AreEqual(expected, actual);
-        }
-        //UC 3.2
-        [TestMethod]
-        public void GivenMood_WhenEmpty_ShouldReturn_EMPTY_MOOD_EXCEPTION_MESSAGE()
-        {
-            //Arrange
-            string moodMessage = string.Empty;
-            MoodAnalyzerProblems moodAnalyser = new MoodAnalyzerProblems();
-            string expected = "Empty message passed.";
+            string expected = "HAPPY";
 
             //Act
             string actual = moodAnalyser.AnalyseMood(moodMessage);
