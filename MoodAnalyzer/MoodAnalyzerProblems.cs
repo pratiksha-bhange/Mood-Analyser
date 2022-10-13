@@ -1,23 +1,43 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using static MoodAnalyzer.MoodAnalyserCustomException;
 
 namespace MoodAnalyzer
 {
-   public class MoodAnalyzerProblems
+    public class MoodAnalyzerProblems
     {
         public string AnalyseMood(string moodMessage)
         {
-            if (moodMessage.ToLower().Contains("sad"))
+            try
             {
-                return "SAD";
+                if (moodMessage == null)
+                {
+                    throw new MoodAnalyserCustomException(ExceptionType.NULL_MESSAGE_EXCEPTION, "Null message passed.");
+                }
+                if (moodMessage.Equals(string.Empty))
+                {
+                    throw new MoodAnalyserCustomException(ExceptionType.EMPTY_MESSAGE_EXCEPTION, "Empty message passed.");
+                }
+                if (moodMessage.ToLower().Contains("sad"))
+                {
+                    return "SAD";
+                }
+                else
+                {
+                    return "HAPPY";
+                }
+
             }
-            else
+            catch (Exception ex)
             {
-                return "HAPPY";
+                return ex.Message;
             }
+
         }
     }
 }
-    
+
+
+
 
