@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-
+using static MoodAnalyzer.MoodAnalyserCustomException;
 
 namespace MoodAnalyzer
 {
@@ -13,7 +13,11 @@ namespace MoodAnalyzer
             {
                 if (moodMessage == null)
                 {
-                    throw new NullReferenceException();
+                    throw new MoodAnalyserCustomException(ExceptionType.NULL_MESSAGE_EXCEPTION, "Null message passed.");
+                }
+                if (moodMessage.Equals(string.Empty))
+                {
+                    throw new MoodAnalyserCustomException(ExceptionType.EMPTY_MESSAGE_EXCEPTION, "Empty message passed.");
                 }
                 if (moodMessage.ToLower().Contains("sad"))
                 {
@@ -25,15 +29,11 @@ namespace MoodAnalyzer
                 }
 
             }
-            catch (NullReferenceException ex)
+            catch (Exception ex)
             {
-                return "HAPPY";
+                return ex.Message;
             }
 
         }
     }
 }
-
-
-
-
