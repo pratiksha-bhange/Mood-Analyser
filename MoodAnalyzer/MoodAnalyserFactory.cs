@@ -9,11 +9,12 @@ namespace MoodAnalyzer
     public class MoodAnalyserFactory
     {
        
-        //CreateMoodAnalyser method to creat object of MoodAnalyse class.
+        //CreateMoodAnalyser method to create object of MoodAnalyse class.
         public static object CreateMoodAnalyser(string className, string constructorName)
         {
             string pattern = @"." + constructorName + "$";
             Match result = Regex.Match(className, pattern);
+            // if true then create object.
             if (result.Success)
             {
                 try
@@ -22,14 +23,16 @@ namespace MoodAnalyzer
                     Type moodAnalyseType = executing.GetType(className);
                     return Activator.CreateInstance(moodAnalyseType);
                 }
+                // if no class found then throw class not found exception
                 catch (ArgumentNullException)
                 {
                     throw new MoodAnalyserCustomException(MoodAnalyserCustomException.ExceptionType.NO_SUCH_CLASS, "Class Not Found");
                 }
             }
+            // if constructor name not equal to class name then throw constructor not found exception
             else
             {
-                throw new MoodAnalyserCustomException(MoodAnalyserCustomException.ExceptionType.NO_SUCH_METHODE, "Constructor is Not Found");
+                throw new MoodAnalyserCustomException(MoodAnalyserCustomException.ExceptionType.NO_SUCH_CONSTRUCTOR, "Constructor is Not Found");
             }
         }
     }

@@ -1,5 +1,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MoodAnalyzer;
+using static MoodAnalyzer.MoodAnalyserProblems;
 
 namespace TestCase
 {
@@ -65,14 +66,15 @@ namespace TestCase
             //Assert
             Assert.AreEqual(expected, actual);
         }
-
+        //TC-4.1 Returns the mood analyser object
         [TestMethod]
         public void GivenMoodAnalyserClassName_ShouldReturns_MoodAnalyserObject()
         {
             object expected = new MoodAnalyzerProblems();
-            object obj = MoodAnalyserFactory.CreateMoodAnalyser("Mood_Analyser_Problems.MoodAnalyser", "MoodAnalyser");
+            object obj = MoodAnalyserFactory.CreateMoodAnalyser("MoodAnalyzer.MoodAnalyzerProblems", "MoodAnalyzerProblems");
             expected.Equals(obj);
         }
+        // TC-4.2 should throw NO_SUCH_CLASS exception.
         [TestMethod]
         public void GivenImproperClassName_Shouldthrow_MoodAnalysisException()
         {
@@ -80,14 +82,14 @@ namespace TestCase
             try
             {
                 MoodAnalyzerProblems moodAnalyser = new MoodAnalyzerProblems();
-                object obj = MoodAnalyserFactory.CreateMoodAnalyser("Mood_Analyser.MoodAnalyser", "MoodAnalyser");
+                object obj = MoodAnalyserFactory.CreateMoodAnalyser("MoodAnalyzer.MoodAnalyzerProblems", "MoodAnalyzerProblems");
             }
             catch (MoodAnalyserCustomException ex)
             {
                 Assert.AreEqual(expected, ex.Message);
             }
         }
-
+        //TC-4.3 should throw NO_SUCH_CONTRUCTOR exception.
         [TestMethod]
         public void GivenImproperConstructor_Shouldthrow_MoodAnalysisException()
         {
@@ -95,7 +97,7 @@ namespace TestCase
             try
             {
                 MoodAnalyzerProblems moodAnalyser = new MoodAnalyzerProblems();
-                object obj = MoodAnalyserFactory.CreateMoodAnalyser("Mood_Analyser_Problems.MoodAnalyser", "MoodAnalysers");
+                object obj = MoodAnalyserFactory.CreateMoodAnalyser("MoodAnalyzer.MoodAnalyzerProblems", "MoodAnalyzer");
             }
             catch (MoodAnalyserCustomException ex)
             {
