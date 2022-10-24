@@ -9,7 +9,7 @@ namespace MoodAnalyzer
         //Enum for Exception Type
         public enum ExceptionType
         {
-            NULL_MESSAGE_EXCEPTION, EMPTY_MESSAGE_EXCEPTION
+            NULL_MESSAGE_EXCEPTION, EMPTY_MESSAGE_EXCEPTION, NO_SUCH_METHODE, NO_SUCH_CLASS
         }
 
         private readonly ExceptionType exceptionType;

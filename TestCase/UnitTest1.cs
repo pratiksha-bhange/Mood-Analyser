@@ -65,9 +65,48 @@ namespace TestCase
             //Assert
             Assert.AreEqual(expected, actual);
         }
+
+        [TestMethod]
+        public void GivenMoodAnalyserClassName_ShouldReturns_MoodAnalyserObject()
+        {
+            object expected = new MoodAnalyzerProblems();
+            object obj = MoodAnalyserFactory.CreateMoodAnalyser("Mood_Analyser_Problems.MoodAnalyser", "MoodAnalyser");
+            expected.Equals(obj);
+        }
+        [TestMethod]
+        public void GivenImproperClassName_Shouldthrow_MoodAnalysisException()
+        {
+            string expected = "Class Not Found";
+            try
+            {
+                MoodAnalyzerProblems moodAnalyser = new MoodAnalyzerProblems();
+                object obj = MoodAnalyserFactory.CreateMoodAnalyser("Mood_Analyser.MoodAnalyser", "MoodAnalyser");
+            }
+            catch (MoodAnalyserCustomException ex)
+            {
+                Assert.AreEqual(expected, ex.Message);
+            }
+        }
+
+        [TestMethod]
+        public void GivenImproperConstructor_Shouldthrow_MoodAnalysisException()
+        {
+            string expected = "Constructor is Not Found";
+            try
+            {
+                MoodAnalyzerProblems moodAnalyser = new MoodAnalyzerProblems();
+                object obj = MoodAnalyserFactory.CreateMoodAnalyser("Mood_Analyser_Problems.MoodAnalyser", "MoodAnalysers");
+            }
+            catch (MoodAnalyserCustomException ex)
+            {
+                Assert.AreEqual(expected, ex.Message);
+            }
+        }
     }
 }
+    
 
 
 
 
+    
